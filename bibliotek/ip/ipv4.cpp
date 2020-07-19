@@ -8,7 +8,7 @@ ipv4::ipv4(){
 	
 	for(int i = 0; i < 4; i++){
 		
-		ipHeader.source[i] = i;
+		ipHeader.source[i] = 0;
 		ipHeader.destination[i] = 0;
 		
 	}
@@ -33,10 +33,32 @@ Also set TTL
 bool ipv4::setSourceAdress(int* adress){
 	
 	bool success = false;
+	int i;
 	
+	int* ptrToAdress;
+	ptrToAdress = adress;
+	i = 0;
 	
+	while(*ptrToAdress && i < 4){
+		
+		ipHeader.source[i++] = *ptrToAdress;
+		
+		ptrToAdress++;
+		
+	}
 	
-	if(success){
+	if(!success){
+		
+		for(int i = 0; i < 4; i++){
+			
+			if(ipHeader.source[i] == 0){
+				
+				this->gotAdress = false;
+				return false;
+				
+			}
+			
+		}
 		
 		this->gotAdress = true;
 		return true;
