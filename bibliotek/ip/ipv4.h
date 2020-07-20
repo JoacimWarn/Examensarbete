@@ -32,8 +32,10 @@ class ipv4{
 	
 	ipv4();
 	
+	void csmaca(bool);
 	int* getSourceAdress();
 	bool setSourceAdress(int*);
+	void disconnectNode(int);
 	
 	struct ipv4Header{
 		
@@ -45,6 +47,7 @@ class ipv4{
 	
 	ipv4Header ipHeader;
 	bool gotAdress;
+	bool isTransmitting;
 	
 };
 	
